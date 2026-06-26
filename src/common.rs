@@ -2149,6 +2149,20 @@ pub fn load_custom_client() {
             .entry("allow-hide-cm".to_string())
             .or_insert("Y".to_string());
     }
+    // Enable direct IP access by default
+    {
+        let mut defaults = config::DEFAULT_SETTINGS.write().unwrap();
+        defaults
+            .entry(config::keys::OPTION_DIRECT_SERVER.to_string())
+            .or_insert("Y".to_string());
+    }
+    // Restrict access to local network segments only by default
+    {
+        let mut defaults = config::DEFAULT_SETTINGS.write().unwrap();
+        defaults
+            .entry(config::keys::OPTION_WHITELIST.to_string())
+            .or_insert("192.168.0.0/16,10.0.0.0/8,172.16.0.0/12".to_string());
+    }
     // Enable SOS mode - simplified UI
     {
         let mut buildin = config::BUILTIN_SETTINGS.write().unwrap();
