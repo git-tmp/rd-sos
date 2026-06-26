@@ -237,12 +237,15 @@ isSosMode
                   Flexible(
                     child: GestureDetector(
                       onDoubleTap: () {
-                        Clipboard.setData(
-                            ClipboardData(text: model.serverId.text));
+                        Clipboard.setData(ClipboardData(
+                            text: bind.mainGetOptionSync(
+                                key: 'local-ip-addr')));
                         showToast(translate("Copied"));
                       },
                       child: TextFormField(
-                        controller: model.serverId,
+                        controller: TextEditingController(
+                            text: bind.mainGetOptionSync(
+                                key: 'local-ip-addr')),
                         readOnly: true,
                         decoration: InputDecoration(
                           border: InputBorder.none,
